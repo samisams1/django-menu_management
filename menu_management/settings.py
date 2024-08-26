@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9fo!(txy^wg-bx_g9oruo8%ok=3lcej(6-++^i!w$6$5$blocq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://react-menu-management.vercel.app/']
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,17 +87,26 @@ WSGI_APPLICATION = 'menu_management.wsgi.application'
   #      'NAME': BASE_DIR / 'db.sqlite3',
  #   }
 #}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'menu_db',
-        'USER': 'postgres',
-        'PASSWORD': 'samisams',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('VERCEL_DB_NAME'),
+        'USER': os.environ.get('VERCEL_DB_USER'),
+        'PASSWORD': os.environ.get('VERCEL_DB_PASSWORD'),
+        'HOST': os.environ.get('VERCEL_DB_HOST'),
+        'PORT': os.environ.get('VERCEL_DB_PORT'),
     }
 }
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql',
+   #     'NAME': 'menu_db',
+    #    'USER': 'postgres',
+     #   'PASSWORD': 'samisams',
+      #  'HOST': 'localhost',
+       # 'PORT': '5432',
+    #}
+#}
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -137,5 +149,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "https://react-menu-management.vercel.app/",
 ]
