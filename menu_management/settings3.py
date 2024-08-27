@@ -23,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9fo!(txy^wg-bx_g9oruo8%ok=3lcej(6-++^i!w$6$5$blocq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -89,10 +88,10 @@ WSGI_APPLICATION = 'menu_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'NAME': 'menu_db',
         'USER': 'postgres',
-        'PASSWORD': 'axYzXqIFuciGDFWEYYRZhpEjmDWxqAuK',
-        'HOST': 'meticulous-empathy.railway.internal',
+        'PASSWORD': 'samisams',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -136,8 +135,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
