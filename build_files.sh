@@ -3,5 +3,11 @@
 # Activate the virtual environment (if applicable)
 # source path/to/venv/bin/activate
 
-# Install requirements without the 'apturl' package
-python3 -m pip install -r requirements.txt --no-deps --upgrade apturl
+# Update pip to the latest version
+python3 -m pip install --upgrade pip
+
+# Install requirements, excluding the 'apturl' package
+python3 -m pip install -r requirements.txt | grep -v "apturl"
+
+# Collect static files
+python3 manage.py collectstatic --no-input
